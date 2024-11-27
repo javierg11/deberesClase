@@ -5,7 +5,7 @@ import java.io.OutputStream;
 
 public class transferirArchivo {
 
-	public static void transfer(long tamaArchivo, InputStream fis, OutputStream os)
+	public static void transfer(InputStream fis, OutputStream os)
 			throws FileNotFoundException, IOException {
 
 		byte[] array = new byte[2048];
@@ -19,10 +19,10 @@ public class transferirArchivo {
 		while (cantBytes != -1) {
 
 			os.write(array, 0, cantBytes);
-			if (cantBytes <= tamaArchivo) {
+			
 				cantBytes = fis.read(array, 0, array.length);
 
-			}
+			
 
 			// total+=cantBytes;
 			// System.out.println("% de transferencia: "+(total*100/tamaArchivo)+"%");

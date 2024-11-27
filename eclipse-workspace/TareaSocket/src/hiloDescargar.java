@@ -24,14 +24,13 @@ public class hiloDescargar implements Runnable {
 			dos = new DataOutputStream(s.getOutputStream());
 			File f = new File(nombreArchivo);
 			fis = new FileInputStream(f);
-			System.out.println(f.length());
+			
 			System.out.println(f.getAbsolutePath());
 
-			dos.writeLong(f.length());
-			dos.flush();
+			
 			dos.writeUTF(f.getName());
 			dos.flush();
-			transferirArchivo.transfer(f.length(), fis, s.getOutputStream());
+			transferirArchivo.transfer(fis, s.getOutputStream());
 
 			fis.close();
 

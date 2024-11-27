@@ -29,7 +29,7 @@ public class Cliente {
 			dos = new DataOutputStream(s.getOutputStream());
 
 			nombre = "/home/alumno/Imágenes/hola.gif";
-			// nombre = "hola.gif";
+			//nombre = "hola.gif";
 
 			dos.writeUTF(orden);
 			dos.flush();
@@ -43,20 +43,19 @@ public class Cliente {
 
 				File f = new File(nombre);
 				fis = new FileInputStream(f);
-				System.out.println(f.length());
+				
 				System.out.println(f.getAbsolutePath());
 
-				dos.writeLong(f.length());
-				dos.flush();
+				
 				dos.writeUTF(f.getName());
 				dos.flush();
-				transferirArchivo.transfer(f.length(), fis, s.getOutputStream());
+				transferirArchivo.transfer(fis, s.getOutputStream());
 
 			} else if (mesajeServer.equals("down")) {
 
 				dis = new DataInputStream(s.getInputStream());
 
-				long tamañoArchivo = dis.readLong();
+				
 				String nombreArchivo = dis.readUTF();
 				System.out.println(nombreArchivo);
 				File f = new File("cliente/" + nombreArchivo);
@@ -66,7 +65,7 @@ public class Cliente {
 				}
 
 				fos = new FileOutputStream(f);
-				transferirArchivo.transfer(tamañoArchivo, s.getInputStream(), fos);
+				transferirArchivo.transfer(s.getInputStream(), fos);
 
 			}
 

@@ -21,7 +21,7 @@ public class HiloTransferencia implements Runnable {
 
 			dis = new DataInputStream(s.getInputStream());
 
-			long tamañoArchivo = dis.readLong();
+			
 			String nombreArchivo = dis.readUTF();
 
 			File f = new File("servidor/" + nombreArchivo);
@@ -29,7 +29,7 @@ public class HiloTransferencia implements Runnable {
 				f.delete();
 			}
 			fos = new FileOutputStream(f);
-			transferirArchivo.transfer(tamañoArchivo, s.getInputStream(), fos);
+			transferirArchivo.transfer(s.getInputStream(), fos);
 
 			fos.close();
 			fos = null;
